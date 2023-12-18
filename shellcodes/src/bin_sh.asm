@@ -5,8 +5,9 @@
 section .text
 global _start
 _start:
-    mov rax, 59  ; set sys_execve syscal number to rax
-    
+    push 59  ; set sys_execve syscal number to rax
+    pop rax
+        
     xor rbx , rbx   ; set NULL to rbx
     push rbx        ; push rbx to stack
 
@@ -18,6 +19,8 @@ _start:
     xor rdx, rdx ; set NULL to rdx
     syscall
 
-    mov rdi, 0   ; set 0 to rdi
-    mov rax, 60  ; set sys_exit syscal number to rax
+
+    xor rdi, rdi  ; set 0 to rdi
+    push 60  ; set sys_exit syscal number to rax
+    pop rax
     syscall
