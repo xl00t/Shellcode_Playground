@@ -19,5 +19,5 @@ _start:
     syscall
 
     mov rdi, 0   ; set 0 to rdi
-	mov rax, 60  ; set sys_exit syscal number to rax
-	syscall
+    mov rax, 60  ; set sys_exit syscal number to rax
+    syscall
