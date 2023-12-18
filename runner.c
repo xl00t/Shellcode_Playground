@@ -43,23 +43,23 @@ int main(int argc, char *argv[]) {
     fclose(shellcode_file);
 
     void* executable_region_shellcode = mmap(NULL, 
-			shellcode_size,
-			PROT_READ | PROT_WRITE | PROT_EXEC,
-			MAP_ANONYMOUS | MAP_PRIVATE,
-			-1,
-			0);
+            shellcode_size,
+            PROT_READ | PROT_WRITE | PROT_EXEC,
+            MAP_ANONYMOUS | MAP_PRIVATE,
+            -1,
+            0);
 
-	if(executable_region_shellcode == MAP_FAILED) {
+    if(executable_region_shellcode == MAP_FAILED) {
         printf("[-] Failed to MAP shellcode\n");
-		return 1;
-	} else {
+        return 1;
+    } else {
         printf("[+] Mapped %zu bytes for shellcode at %p with %o PROT\n", shellcode_size, &executable_region_shellcode, PROT_READ | PROT_WRITE | PROT_EXEC);
     }
 
-	memcpy(executable_region_shellcode, shellcode, shellcode_size);
+    memcpy(executable_region_shellcode, shellcode, shellcode_size);
     
 
-    int (*func)() = (int (*)())executable_region_shellcode;
+    void (*func)() = (void (*)())executable_region_shellcode;
     func();
 
     return 0;
