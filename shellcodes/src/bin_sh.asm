@@ -1,7 +1,7 @@
 ; execute /bin/sh
-; %rax	System call	%rdi	%rsi	%rdx	%r10	%r8	%r9
-; 59	sys_execve	const char *filename	const char *const argv[]	const char *const envp[]
-; 60	sys_exit	int error_code
+; %rax	System call	    %rdi	                %rsi	                    %rdx	                    %r10	%r8	%r9
+; 59	sys_execve	    const char *filename	const char *const argv[]	const char *const envp[]
+; 60	sys_exit	    int error_code
 
 %define SYS_EXECVE 59
 %define SYS_EXIT 60
