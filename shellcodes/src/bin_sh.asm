@@ -2,6 +2,7 @@
 ; %rax	System call	%rdi	%rsi	%rdx	%r10	%r8	%r9
 ; 59	sys_execve	const char *filename	const char *const argv[]	const char *const envp[]
 ; 60	sys_exit	int error_code
+BITS 64
 section .text
 global _start
 _start:
