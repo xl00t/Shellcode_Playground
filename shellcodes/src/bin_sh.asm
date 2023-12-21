@@ -2,11 +2,15 @@
 ; %rax	System call	%rdi	%rsi	%rdx	%r10	%r8	%r9
 ; 59	sys_execve	const char *filename	const char *const argv[]	const char *const envp[]
 ; 60	sys_exit	int error_code
+
+%define SYS_EXECVE 59
+%define SYS_EXIT 60
+
 BITS 64
 section .text
 global _start
 _start:
-    push 59  ; set sys_execve syscal number to rax
+    push SYS_EXECVE  ; set sys_execve syscal number to rax
     pop rax
         
     xor rbx , rbx   ; set NULL to rbx
@@ -22,6 +26,6 @@ _start:
 
 
     xor rdi, rdi  ; set 0 to rdi
-    push 60  ; set sys_exit syscal number to rax
+    push SYS_EXIT  ; set sys_exit syscal number to rax
     pop rax
     syscall
