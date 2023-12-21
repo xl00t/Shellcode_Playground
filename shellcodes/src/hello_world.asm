@@ -28,5 +28,5 @@ _start:
     pop rax
     syscall
 
-hello_world: db "Hello, World!", 10
+hello_world: db "Hello, World!", 0x0a
 hello_world_len: equ $ - hello_world
