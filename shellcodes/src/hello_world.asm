@@ -18,9 +18,13 @@ _start:
     
     push STDOUT    ; set stdout file descriptor
     pop rdi
-    
-    lea rsi, [rel hello_world] ; set hello_world buffer to rsi
-    mov rdx, hello_world_len   ; set hello_world_len to rdx
+    jmp end
+start:
+    pop rbx
+    lea rsi, [rbx] ; set hello_world buffer to rsi
+
+    push hello_world_len       ; set hello_world_len to rdx
+    pop rdx
     syscall
 
     xor rdi, rdi  ; set 0 to rdi
@@ -28,5 +32,7 @@ _start:
     pop rax
     syscall
 
+end:
+    call start
 hello_world: db "Hello, World!", 0x0a
 hello_world_len: equ $ - hello_world
