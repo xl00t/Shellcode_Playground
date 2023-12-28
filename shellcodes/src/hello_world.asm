@@ -20,7 +20,7 @@ _start:
     pop rdi
     jmp end
 start:
-    pop rbx
+    pop rbx        ; pop the ret address from the stack to rbx
     lea rsi, [rbx] ; set hello_world buffer to rsi
 
     push hello_world_len       ; set hello_world_len to rdx
